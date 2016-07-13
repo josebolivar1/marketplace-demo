@@ -119,44 +119,110 @@
                             <!-- Nav tabs -->
                             <div class="col-lg-12  box-title no-border">
                                 <div class="inner">
+                                    
+<!-- DECLARACION VARIABLES Y ARRAY -->  
+
+
+                            
+    <?php
+    
+        
+        //1. vamos a declarar una variable cone le contenido de la frasse: "un viaje ..."
+        //2. racortar la variable para que solo muestre los 80 primeros caracteres.
+        //3. unir la variable (solo los 80 primero caracteres) con "..." (3 puntos).
+        //4. despues vamos a mostrar la frase final.
+        
+        $frase = ("Un viaje entretenido y seguro, no me gusta correr. Además, pararemos a mitad de camino para tomar una rica tostada de sobraasada, y luego, directos a Huelva.");
+        $tempFrase = substr($frase, 0, 80);
+        $fraseFinal = $tempFrase . " ... ";
+        
+                                        
+                                                
+                
+                $user1 = array(
+                    'name'=>"Antonio Pérez",
+                    'dirección'=>" Calle Poeta Paredes",
+                    'origen'=> "Córdoba",
+                    'destino'=>"Huelva",
+                    'hora' => "9:30",
+                    'precio' => "18",
+                    'plazas' => "3"
+                    );
+                $user2 = array(
+                    'name'=>"Antonio García",
+                    'origen'=> "Córdoba",
+                    'destino'=>"Sevilla",
+                    'dirección'=>" Calle Periodista Quesada Chacón",
+                    'hora' => "8:30",
+                    'precio' => "8",
+                    'plazas' => "2"
+                    );
+                $user3 = array(
+                    'name'=>"Emily Valle",
+                    'origen'=> "Córdoba",
+                    'destino'=>"Granada",
+                    'dirección'=>" Calle Jaén",
+                    'hora' => "10:00",
+                    'precio' => "15",
+                    'plazas' => "3"
+                    ); 
+                $trayectos = array(
+                1 => $user1,
+                2 => $user2,
+                3 => $user3,
+                )
+                
+    ?>
+                            
+                        
+                                
+<!--/ fin array -->
+
+
                                     <h2><span> Trayectos </span> publicados
-                                        <small> 1 resultado encontrado</small>
-
-
+                                        <small><?php echo count($trayectos) ?> resultado(s) encontrado(s)</small>
                                     </h2>
                                 </div>
                             </div>
                             
                         <div class="adds-wrapper jobs-list">
+                            
+                            
+<!--/ CONDICION Y COMIENZO DEL BUCLE EN PHP -->                            
+                            
+                            <?php
+                                 for ($i = 1; $i <=count($trayectos); $i= $i + 1)
+                                {
+                            ?>
+                            
                             <div class="item-list job-item">
-
-
                                 <div class="col-sm-1  col-xs-2 no-padding photobox">
                                     <div class="add-image"><a href=""><img class="thumbnail no-margin"
                                                                            src="https://addons.cdn.mozilla.net/user-media/userpics/0/0/45.png?modified=1447324257"
                                                                            alt="Avatar de Usuario"></a></div>
                                 </div>
                                 <!--/.photobox-->
+                                
                                 <div class="col-sm-10  col-xs-10  add-desc-box">
                                     <div class="add-details jobs-item">
-                                        <h5 class="company-title"><a href="">Antonio Pérez</a></h5>
-                                        <h4 class="job-title"><a href="job-details.html"> Córdoba a Huelva </a></h4>
+                                        <h5 class="company-title"><a href="">
+                                            <?php echo $trayectos[$i]['name'];?></a></h5>
+                                        <h4 class="job-title"><a href="job-details.html"><?php echo $i . ". " . $trayectos [$i]['origen'];?> a <?php echo $trayectos [$i]['destino'];?></a></h4>
                                         <span class="info-row">  <span class="item-location"><i
-                                                class="fa fa-map-marker"></i> Calle Poeta Paredes, 25 </span> <span class="date"><i
-                                                class=" icon-clock"> </i>9:00</span><span class=" salary">	<i
-                                                class=" icon-money"> </i> 10€</span></span>
+                                                class="fa fa-map-marker"></i><?php echo $trayectos [$i]['dirección'];?> </span> <span class="date"><i
+                                                class=" icon-clock"> </i><?php echo $trayectos [$i]['hora'];?></span><span class=" salary">	<i
+                                                class=" icon-money"> </i><?php echo $trayectos [$i]['precio'];?></span></span>
 
                                         <div class="jobs-desc">
-                                            Un viaje entretenido y seguro, no me gusta correr. Además, pararemos a mitad de camino para tomar una rica tostada de sobraasada, y luego, directos a Huelva.
+                                            <?php echo "$fraseFinal" ?>
                                         </div>
-
 
                                         <div class="job-actions">
                                             <ul class="list-unstyled list-inline">
                                                 <li>
                                                     <span class="save-job">
                                                         <span class="fa fa-users"></span>
-                                                        3 plazas
+                                                        <?php echo $trayectos [$i]['plazas'];?>
                                                     </span>
                                                 </li>
                                             </ul>
@@ -168,8 +234,15 @@
                                 <!--/.add-desc-box-->
 
                                 <!--/.add-desc-box-->
+                                
                             </div>
                             <!--/.job-item-->
+                            <?php
+                            
+                            }
+                            
+                            ?>
+                            
                         </div>
                     </div>    
                 </div>    
