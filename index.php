@@ -38,6 +38,15 @@
 
 
 </head>
+
+<?php
+
+    date_default_timezone_set("Europe/Madrid");
+    $year = date("Y");
+            
+?>
+
+
 <body>
 
 <div id="wrapper">
@@ -69,7 +78,7 @@
 
                     <p class="sub animateme fittext3 animated fadeIn"> Ahorra combustible y haz amigos en la plataforma de Comparte Tu Coche </p>
 
-                    <form name="search" action="list.html" method="GET">
+                    <form name="search" action="list.php" method="GET">
                         <div class="row search-row animated fadeInUp">
                             <div class="col-lg-6 col-sm-6 search-col relative locationicon">
                                 <i class="icon-location-2 icon-append"></i>
@@ -92,6 +101,8 @@
         </div>
     </div>
     <!-- /.intro -->
+    
+
 
     <div class="main-container">
         <div class="container">
@@ -191,7 +202,7 @@
     <div class="footer" id="footer">
         <div class="container">
             <ul class=" pull-right navbar-link footer-nav">
-                <li> &copy; 2016 - development by Sopinet Software</li>
+                <li> &copy; <?php echo $year;?> - Jose Bolivar Valle Bravo </li>
             </ul>
         </div>
     </div>

@@ -66,6 +66,8 @@
                     <option value="111">Huelva</option>
                     <option value="111">Cordoba</option>
                     <option value="111">Sevilla</option>
+                    <option value="111">Granada</option>
+                    <option value="111">Málaga</option>
                 </select>    
             </div>
             <div class="col-sm-3">
@@ -111,6 +113,96 @@
                     </aside>
                 </div>
                 
+<!-- CODIGO PHP -->
+
+    <?php 
+           
+          
+               // Creamos un objeto de tipo Trayecto y lo asignamos a la variable trayecto1
+          
+            include "Trayecto.php";
+            
+            // Rellenamos el objeto con una serie de dato
+            
+                $trayecto1 = new Trayecto();
+                    $trayecto1->llenarObjeto(
+                    "Antonio Pérez",
+                    "Calle Poeta Paredes, 25",
+                    "Córdoba",
+                    "Huelva",
+                    "9:00",
+                    "18€",
+                    "3"
+                );
+                
+            // Creamos un objeto de tipo Trayecto y lo asignamos a la variable trayecto2
+                $trayecto2 = new Trayecto();
+                
+                // Rellenamos el objeto con una serie de datos
+                
+                    $trayecto2->llenarObjeto(
+                    "Antonio García",
+                    "Calle Periodista Quesada Chacón",
+                    "Sevilla",
+                    "Málaga",
+                    "8:30",
+                    "8",
+                    "2"
+                    );
+                    
+            // Creamos un objeto de tipo Trayecto y lo asignamos a la variable trayecto3
+                    $trayecto3 = new Trayecto();
+ 
+                // Rellenamos el objeto con una serie de datos
+ 
+                    $trayecto3->llenarObjeto(
+                    "Emily Valle",
+                    "Calle Jaén",
+                    "Córdoba",
+                    "Granada",
+                    "10:00",
+                    "15",
+                    "3"
+                    ); 
+                    
+            // Creamos un objeto de tipo Trayecto y lo asignamos a la variable trayecto4
+                    $trayecto4 = new Trayecto();
+
+               // Rellenamos el objeto con una serie de datos
+
+                    $trayecto4->llenarObjeto(
+                    "José Valle",
+                    "Calle Jaén",
+                    "Granada",
+                    "Sevilla",
+                    "8:10",
+                    "25",
+                    "1"
+                    );   
+                    
+        // Creamos una variable trayectos de tipo array, donde almacenaremos los 3 trayectos creados más arriba
+                $trayectos = array($trayecto1, $trayecto2);
+                
+                    $trayectos = array(
+                    $trayecto1,
+                    $trayecto2,
+                    $trayecto3,
+                    $trayecto4
+                    );
+                    
+        // Recorremos el array original trayectos para buscar los trayectos a filtrar
+                for($i = 0; $i < count($trayectos); $i = $i + 1) {
+                    if ($trayectos [$i]->tieneOrigen($_GET["country"])) {
+                        $trayectosFiltrados[] = $trayectos [$i];
+                    }
+                }
+                
+                
+    ?>
+                            
+    <!-- FIN CODIGO PHP -->                    
+                                    
+                                    
                 <!--/.page-side-bar-->
                 <div class="col-sm-9 page-content col-thin-left">
                     <div class="category-list">
@@ -120,67 +212,9 @@
                             <div class="col-lg-12  box-title no-border">
                                 <div class="inner">
                                     
-<!-- DECLARACION VARIABLES Y ARRAY -->  
-
-
-                            
-    <?php
-    
-        
-        //1. vamos a declarar una variable cone le contenido de la frasse: "un viaje ..."
-        //2. racortar la variable para que solo muestre los 80 primeros caracteres.
-        //3. unir la variable (solo los 80 primero caracteres) con "..." (3 puntos).
-        //4. despues vamos a mostrar la frase final.
-        
-        $frase = ("Un viaje entretenido y seguro, no me gusta correr. Además, pararemos a mitad de camino para tomar una rica tostada de sobraasada, y luego, directos a Huelva.");
-        $tempFrase = substr($frase, 0, 80);
-        $fraseFinal = $tempFrase . " ... ";
-        
-                                        
-                                                
-                
-                $user1 = array(
-                    'name'=>"Antonio Pérez",
-                    'dirección'=>" Calle Poeta Paredes",
-                    'origen'=> "Córdoba",
-                    'destino'=>"Huelva",
-                    'hora' => "9:30",
-                    'precio' => "18",
-                    'plazas' => "3"
-                    );
-                $user2 = array(
-                    'name'=>"Antonio García",
-                    'origen'=> "Córdoba",
-                    'destino'=>"Sevilla",
-                    'dirección'=>" Calle Periodista Quesada Chacón",
-                    'hora' => "8:30",
-                    'precio' => "8",
-                    'plazas' => "2"
-                    );
-                $user3 = array(
-                    'name'=>"Emily Valle",
-                    'origen'=> "Córdoba",
-                    'destino'=>"Granada",
-                    'dirección'=>" Calle Jaén",
-                    'hora' => "10:00",
-                    'precio' => "15",
-                    'plazas' => "3"
-                    ); 
-                $trayectos = array(
-                1 => $user1,
-                2 => $user2,
-                3 => $user3,
-                )
-                
-    ?>
-                            
-                        
-                                
-<!--/ fin array -->
-
-
+  
                                     <h2><span> Trayectos </span> publicados
-                                        <small><?php echo count($trayectos) ?> resultado(s) encontrado(s)</small>
+                                        <small><?php echo count($trayectosFiltrados) ?> resultado(s) encontrado(s)</small>
                                     </h2>
                                 </div>
                             </div>
@@ -191,27 +225,27 @@
 <!--/ CONDICION Y COMIENZO DEL BUCLE EN PHP -->                            
                             
                             <?php
-                                 for ($i = 1; $i <=count($trayectos); $i= $i + 1)
+                                 for ($i = 0; $i <count($trayectosFiltrados); $i=$i + 1)
                                 {
                             ?>
                             
                             <div class="item-list job-item">
                                 <div class="col-sm-1  col-xs-2 no-padding photobox">
                                     <div class="add-image"><a href=""><img class="thumbnail no-margin"
-                                                                           src="https://addons.cdn.mozilla.net/user-media/userpics/0/0/45.png?modified=1447324257"
-                                                                           alt="Avatar de Usuario"></a></div>
+                                                                           src="<?php echo $trayectosFiltrados[$i]->avatar;?>7"
+                                                                           alt="Avatar de Usuario <?php echo $trayectosFiltrados[$i]->name;?>"></a></div>
                                 </div>
                                 <!--/.photobox-->
                                 
                                 <div class="col-sm-10  col-xs-10  add-desc-box">
                                     <div class="add-details jobs-item">
                                         <h5 class="company-title"><a href="">
-                                            <?php echo $trayectos[$i]['name'];?></a></h5>
-                                        <h4 class="job-title"><a href="job-details.html"><?php echo $i . ". " . $trayectos [$i]['origen'];?> a <?php echo $trayectos [$i]['destino'];?></a></h4>
+                                            <?php echo $trayectosFiltrados[$i]->name;?></a></h5>
+                                        <h4 class="job-title"><a href="job-details.html"><?php echo ($i+1) . ". " . $trayectosFiltrados [$i]->origen;?> a <?php echo $trayectosFiltrados [$i]->destino;?></a></h4>
                                         <span class="info-row">  <span class="item-location"><i
-                                                class="fa fa-map-marker"></i><?php echo $trayectos [$i]['dirección'];?> </span> <span class="date"><i
-                                                class=" icon-clock"> </i><?php echo $trayectos [$i]['hora'];?></span><span class=" salary">	<i
-                                                class=" icon-money"> </i><?php echo $trayectos [$i]['precio'];?></span></span>
+                                                class="fa fa-map-marker"></i><?php echo $trayectosFiltrados [$i]->dirección;?></span> <span class="date"><i
+                                                class=" icon-clock"> </i><?php echo $trayectosFiltrados [$i]->hora;?></span><span class=" salary">	<i
+                                                class=" icon-money"> </i><?php echo $trayectosFiltrados [$i]->precio;?></span></span>
 
                                         <div class="jobs-desc">
                                             <?php echo "$fraseFinal" ?>
@@ -222,7 +256,7 @@
                                                 <li>
                                                     <span class="save-job">
                                                         <span class="fa fa-users"></span>
-                                                        <?php echo $trayectos [$i]['plazas'];?>
+                                                        <?php echo $trayectosFiltrados [$i]->plazas;?>
                                                     </span>
                                                 </li>
                                             </ul>
@@ -243,15 +277,16 @@
                             
                             ?>
                             
+<!----------    FIN BUCLE PHP   --------> 
+
                         </div>
                     </div>    
-                </div>    
-                
-                
+                </div>
             </div>
         </div>
     </div>    
-        
+    <!--/ fin inner-page -->
+    
     <div class="footer" id="footer">
         <div class="container">
             <ul class=" pull-right navbar-link footer-nav">
