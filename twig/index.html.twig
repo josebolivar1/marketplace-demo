@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+   Comparte tu coche - Bienvenido a la plataforma de compartir tu coche.
+{% endblock %}
+
+{% block contenido %}
+    {% block Principal %}
+        {% include "index/busquedaPrincipal.html.twig" %}
+    {% end block%}
+    
+    {% block Principal %}
+        {% include "index/caracteristicas.html.twig" %}
+    {% end block%}
+    
+    {% block Principal %}
+        {% include "index/información.html.twig" %}
+    {% end block%}
+    
+    {% block Principal %}
+        {% include "index/contacto.html.twig" %}
+    {% end block%}
+    
+{% endblock %}
+
